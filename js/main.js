@@ -1,7 +1,7 @@
-import MessageBoard from './components/MessageBoard.js';
-import Comments from './components/Comments.js';
-import Comment from './components/Comment.js';
+import MessageBoardApp from './components/MessageBoard.js';
+import CommentList from './components/Comments.js';
+import CommentItem from './components/Comment.js';
 
-customElements.define('message-board', MessageBoard);
-customElements.define('message-board-comments', Comments);
-customElements.define('message-board-comment', Comment);
+customElements.define('message-board-app', MessageBoardApp);
+customElements.define('message-board-comment-item', CommentItem);
+customElements.define('message-board-comment-list', CommentList);

@@ -1,4 +1,6 @@
 @import "components/MessageBoard.css";
+@import "components/CommentItem.css";
+@import "components/CommentList.css";
 
 html,
 body {
