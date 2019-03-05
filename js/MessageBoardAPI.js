@@ -9,8 +9,11 @@ class MessageBoardAPI {
   }
 
   // returns all comments
-  getComments() {
-    // return wait(1000).then(() => this.comments);
+  getComments(query) {
+    if (query) {
+      // return wait(1000).then(() => this.comments);
+      return fetch(`${this.url}?filter=${query}`).then(response => response.json());
+    }
     return fetch(this.url).then(response => response.json());
   }
   /**
@@ -92,7 +95,7 @@ class MessageBoardAPI {
    * @param {string} substring Substring to be filtered
    * @returns {array} Filtered array of comment objects
    */
-  filterCommentsByText(substring) {
+  filterCommentsByText(substring = '') {
     return fetch(`${this.url}?filter=${substring}`).then(response => response.json());
   }
 }

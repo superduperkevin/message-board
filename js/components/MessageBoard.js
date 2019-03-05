@@ -76,9 +76,9 @@ class MessageBoardApp extends HTMLElement {
     const searchText = new FormData(event.target).get('search');
     // loading function here
     // this.api.filterCommentsByText(searchText).then(updatedComments => this.setState({ comments: updatedComments }));
-    const updatedComments = await this.api.filterCommentsByText(searchText);
+    const responseBody = await this.api.filterCommentsByText(searchText);
     this.setState({
-      comments: updatedComments.comments,
+      comments: responseBody.comments,
     });
   };
 
