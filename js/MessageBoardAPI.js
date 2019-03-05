@@ -5,12 +5,13 @@ function wait(ms) {
 class MessageBoardAPI {
   constructor(comments = []) {
     this.comments = comments;
+    this.url = 'https://express-codealonggg.herokuapp.com/api/comments/';
   }
 
   // returns all comments
   getComments() {
     // return wait(1000).then(() => this.comments);
-    return fetch('https://express-codealonggg.herokuapp.com/api/comments').then(response => response.json());
+    return fetch(this.url).then(response => response.json());
   }
   /**
    * Adds a new comment to the comments array
@@ -32,7 +33,7 @@ class MessageBoardAPI {
       // text: text
       text,
     };
-    return fetch('https://express-codealonggg.herokuapp.com/api/comments', {
+    return fetch(this.url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,12 +64,9 @@ class MessageBoardAPI {
     //   this.comments.splice(index, 1);
     //   return this.comments;
     // });
-    const index = this.comments.findIndex(comment => comment.id === id);
-    return fetch(`https://express-codealonggg.herokuapp.com/api/comments/${id}`, {
+    // const index = this.comments.findIndex(comment => comment.id === id);
+    return fetch(`${this.url}${id}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
     }).then(response => response.json());
   }
 
@@ -95,13 +93,13 @@ class MessageBoardAPI {
    * @returns {array} Filtered array of comment objects
    */
   filterCommentsByText(substring) {
-    return wait(1000).then(() =>
-      this.comments.filter(comment => comment.text.toLowerCase().includes(substring.toLowerCase()))
-    );
-    // return this.comments.filter(comment => comment.text.toLowerCase().includes(substring.toLowerCase()));
+    return fetch(`${this.url}?filter=${substring}`).then(response => response.json());
   }
 }
+// return wait(1000).then(() =>
+// this.comments.filter(comment => comment.text.toLowerCase().includes(substring.toLowerCase()))
 
+// return this.comments.filter(comment => comment.text.toLowerCase().includes(substring.toLowerCase()));
 export default MessageBoardAPI;
 
 // Use this comment data for testing

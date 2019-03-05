@@ -78,7 +78,7 @@ class MessageBoardApp extends HTMLElement {
     // this.api.filterCommentsByText(searchText).then(updatedComments => this.setState({ comments: updatedComments }));
     const updatedComments = await this.api.filterCommentsByText(searchText);
     this.setState({
-      comments: updatedComments,
+      comments: updatedComments.comments,
     });
   };
 
@@ -95,9 +95,9 @@ class MessageBoardApp extends HTMLElement {
   handleRemoveComment = async event => {
     const confirmed = window.confirm(`Really delete ${event.detail}?`);
     if (confirmed) {
-      const updatedComments = await this.api.removeComment(event.target.comment.id);
+      const responseBody = await this.api.removeComment(event.target.comment.id);
       this.setState({
-        comments: updatedComments,
+        comments: responseBody.comments,
       });
     }
   };
